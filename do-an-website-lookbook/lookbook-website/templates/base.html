@@ -1,15 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
-{% load tailwind_cli %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Django App</title>
-    {% tailwind_css %}
+    <title>{% block title %}My Django App{% endblock %}</title>
+    {% load django_bootstrap5 %}
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
-<body class="bg-gray-50">
-    <div class="container mx-auto px-4">
+<body class="bg-gray-500 flex flex-col min-h-screen hover:bg-amber-400">
+
+    <!-- Header -->
+    {% include "includes/_header.html" %}
+
+    <!-- Main Content -->
+    <main class="flex-1 container mx-auto px-4 py-6">
         {% block content %}{% endblock %}
-    </div>
+    </main>
+
+    <!-- Footer -->
+    {% include "includes/_footer.html" %}
+
 </body>
 </html>
